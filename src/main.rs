@@ -1,6 +1,6 @@
 use std::env;
 
-fn g(q: u64, r: u64, t: u64, k: u64, n: u64, l: u64) -> f64 {
+fn g(q: i64, r: i64, t: i64, k: i64, n: i64, l: i64) -> f64 {
     if 4 * q + r - t < n * t {
         n as f64 / 10f64.powi(l as i32)
     } else {
@@ -24,10 +24,10 @@ fn g(q: u64, r: u64, t: u64, k: u64, n: u64, l: u64) -> f64 {
 
 fn spigot(n_digits: u32) -> f64 {
     let mut sum = 0.0;
-    let (mut q, mut r, mut t, mut k, mut n, mut l) = (1, 0, 1, 1, 3, 3);
+    let (mut q, mut r, mut t, mut k, mut n, /*mut*/ l) = (1, 0, 1, 1, 3, 3);
 
     while n < n_digits {
-        sum += g(q, r, t, k, n as u64, l);
+        sum += g(q, r, t, k, n as i64, l);
         let new_t = 3 * q + 2 * r;
         let new_r = 10 * r - 5 * k * q;
         q = t;
