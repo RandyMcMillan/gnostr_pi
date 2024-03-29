@@ -2,7 +2,7 @@ use std::env;
 
 fn g(q: u64, r: u64, t: u64, k: u64, n: u64, l: u64) -> f64 {
     if 4 * q + r - t < n * t {
-        n as f64 / 10f64.powi(l)
+        n as f64 / 10f64.powi(l as i32)
     } else {
         g(
             10 * q,
@@ -27,13 +27,13 @@ fn spigot(n_digits: u32) -> f64 {
     let (mut q, mut r, mut t, mut k, mut n, mut l) = (1, 0, 1, 1, 3, 3);
 
     while n < n_digits {
-        sum += g(q, r, t, k, n, l);
+        sum += g(q, r, t, k, n as u64, l);
         let new_t = 3 * q + 2 * r;
         let new_r = 10 * r - 5 * k * q;
         q = t;
         r = new_r;
         t = new_t;
-        k = -k;
+        k = -1 * k;
         n += 1;
     }
 
