@@ -10,8 +10,9 @@ fn spigot(n_digits: u32) -> f64 {
 
     loop {
         let digit = (k as f64 * q + r) / t;
-println!("{}",digit);
+        println!("digit={}", digit);
         sum += digit / 10.0f64.powi(n as i32);
+        println!("sum={}", sum);
         n += 1.0;
 
         if n >= n_digits as f64 {
@@ -32,7 +33,6 @@ fn main() {
     let pi = spigot(n_digits as u32);
     println!("Pi ({} digits): {}", n_digits as i32, pi);
 }
-
 
 //fn main() {
 //    let args = env::args().collect::<Vec<String>>();
