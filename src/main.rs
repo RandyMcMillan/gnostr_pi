@@ -4,6 +4,12 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     //println!("Number of arguments: {}", args.len() - 1);
     let limit = u64::from_str(&args[1]).unwrap();
+if (args.len() - 1) == 2{
+
+    let offset = u64::from_str(&args[2]).unwrap();
+println!("offset={}",offset);
+
+}
 
     calc_pi(limit as u64);
 }
