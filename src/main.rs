@@ -30,9 +30,8 @@ fn calc_pi(limit: u64) {
             if first {
                 //print!("3.");
                 first = false;
-            }else{
-            print!("{}", n);
-
+            } else {
+                print!("{}", n);
             }
             let nr = (&r - &n * &t) * 10;
             n = (&q * 3 + &r) * 10 / &t - &n * 10;
