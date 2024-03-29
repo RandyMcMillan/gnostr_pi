@@ -9,22 +9,23 @@ fn main() {
         //TODO print usage
     }
     if (args.len() - 1) == 1 {
+        if &args[1] == "-h" || &args[1] == "--help" {}
         let depth = u64::from_str(&args[1]).unwrap();
-        println!("depth={}", depth);
+        println!("depth={}\n", depth);
         calc_pi(depth as u64);
         process::exit(0);
     }
     if (args.len() - 1) == 2 {
         let depth = u64::from_str(&args[1]).unwrap();
-        println!("depth={}", depth);
+        println!("depth={}\n", depth);
         let offset = u64::from_str(&args[2]).unwrap();
-        println!("offset={}", offset);
+        println!("offset={}\n", offset);
         calc_pi_with_offset(depth as u64, offset as u64);
         process::exit(0);
     }
 }
-fn calc_pi_with_offset(limit: u64, offset: u64) {
-    //println!("limit={}", limit);
+fn calc_pi_with_offset(depth: u64, offset: u64) {
+    //println!("depth={}", depth);
     let mut q = BigInt::from(1);
     let mut r = BigInt::from(0);
     let mut t = BigInt::from(1);
@@ -35,18 +36,24 @@ fn calc_pi_with_offset(limit: u64, offset: u64) {
     let mut count = 0u64;
     //println!("count={}", count);
     loop {
-        if count == limit {
+        if count == depth + offset {
             //println!("limit={}", limit);
-            //println!("count={}", count);
+            println!("count={}", count);
             process::exit(0);
         }
+        println!("count={}\n", count);
         if &q * 4 + &r - &t < &n * &t {
             //print!("count={}\n", count);
             if first {
+                //we only print pi mantissa
                 //print!("3.");
                 first = false;
             } else {
-                print!("{}", n);
+                //detect limit and offset
+                //dont print for offset number of digits
+                //augment depth to limit + offset
+
+                print!("\n{}\n", n);
             }
             let nr = (&r - &n * &t) * 10;
             n = (&q * 3 + &r) * 10 / &t - &n * 10;
