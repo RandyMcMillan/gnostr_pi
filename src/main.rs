@@ -1,53 +1,37 @@
-use std::env;
-
-fn g(q: i64, r: i64, t: i64, k: i64, n: i64, l: i64) -> f64 {
-    if 4 * q + r - t < n * t {
-        n as f64 / 10f64.powi(l as i32)
-    } else {
-        g(
-            10 * q,
-            10 * (r - n * t),
-            t,
-            k,
-            (10 * (3 * q + r)) / t - 10 * n,
-            l,
-        ) + g(
-            q * k,
-            (2 * q + r) * l,
-            t * l,
-            k + 1,
-            (q * (7 * k + 2) + r * l) / (t * l),
-            l + 2,
-        )
-    }
-}
-
-fn spigot(n_digits: u32) -> f64 {
-    let mut sum = 0.0;
-    let (mut q, mut r, mut t, mut k, mut n, /*mut*/ l) = (1, 0, 1, 1, 3, 3);
-
-    while n < n_digits {
-        sum += g(q, r, t, k, n as i64, l);
-        let new_t = 3 * q + 2 * r;
-        let new_r = 10 * r - 5 * k * q;
-        q = t;
-        r = new_r;
-        t = new_t;
-        k = -1 * k;
-        n += 1;
-    }
-
-    sum
-}
+use num_bigint::BigInt;
 
 fn main() {
-    let args = env::args().collect::<Vec<String>>();
-    if args.len() < 2 {
-        panic!("Usage: pi_spigot <n_digits>");
-    }
-
-    let n_digits = args[1].parse::<u32>().expect("Invalid number of digits");
-    let pi = spigot(n_digits);
-    println!("Pi ({} digits): {}", n_digits, pi);
+    calc_pi();
 }
 
+fn calc_pi() {
+    let mut q = BigInt::from(1);
+    let mut r = BigInt::from(0);
+    let mut t = BigInt::from(1);
+    let mut k = BigInt::from(1);
+    let mut n = BigInt::from(3);
+    let mut l = BigInt::from(3);
+    let mut first = true;
+    loop {
+        if &q * 4 + &r - &t < &n * &t {
+            print!("{}", n);
+            if first {
+                print!(".");
+                first = false;
+            }
+            let nr = (&r - &n * &t) * 10;
+            n = (&q * 3 + &r) * 10 / &t - &n * 10;
+            q *= 10;
+            r = nr;
+        } else {
+            let nr = (&q * 2 + &r) * &l;
+            let nn = (&q * &k * 7 + 2 + &r * &l) / (&t * &l);
+            q *= &k;
+            t *= &l;
+            l += 2;
+            k += 1;
+            n = nn;
+            r = nr;
+        }
+    }
+}
