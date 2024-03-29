@@ -27,10 +27,12 @@ fn calc_pi(limit: u64) {
         }
         if &q * 4 + &r - &t < &n * &t {
             //print!("count={}\n", count);
-            print!("{}", n);
             if first {
-                print!(".");
+                //print!("3.");
                 first = false;
+            }else{
+            print!("{}", n);
+
             }
             let nr = (&r - &n * &t) * 10;
             n = (&q * 3 + &r) * 10 / &t - &n * 10;
