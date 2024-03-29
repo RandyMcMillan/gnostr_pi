@@ -9,7 +9,7 @@ fn main() {
 }
 
 fn calc_pi(limit: u64) {
-    println!("limit={}", limit);
+    //println!("limit={}", limit);
     let mut q = BigInt::from(1);
     let mut r = BigInt::from(0);
     let mut t = BigInt::from(1);
@@ -18,11 +18,11 @@ fn calc_pi(limit: u64) {
     let mut l = BigInt::from(3);
     let mut first = true;
     let mut count = 0u64;
-    println!("count={}", count);
+    //println!("count={}", count);
     loop {
         if count == limit {
-    println!("limit={}", limit);
-    println!("count={}", count);
+            //println!("limit={}", limit);
+            //println!("count={}", count);
             process::exit(0);
         }
         if &q * 4 + &r - &t < &n * &t {
