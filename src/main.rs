@@ -54,6 +54,7 @@ fn calc_pi_with_offset(depth: u64, offset: u64) {
                 //augment depth to limit + offset
 
                 print!("\n{}\n", n);
+                //print!("{}", n);
             }
             let nr = (&r - &n * &t) * 10;
             n = (&q * 3 + &r) * 10 / &t - &n * 10;
