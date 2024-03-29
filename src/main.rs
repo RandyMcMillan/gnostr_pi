@@ -20,7 +20,15 @@ fn main() {
         println!("depth={}\n", depth);
         let offset = u64::from_str(&args[2]).unwrap();
         println!("offset={}\n", offset);
+
+
+        if offset <= 0 {}else{
+
         calc_pi_with_offset(depth as u64, offset as u64);
+
+        }
+
+
         process::exit(0);
     }
 }
