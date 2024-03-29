@@ -9,7 +9,8 @@ fn spigot(n_digits: u32) -> f64 {
     let mut sum = 0.0;
 
     loop {
-        let mut digit = (k as f64 * q + r) / t;
+        let digit = (k as f64 * q + r) / t;
+println!("{}",digit);
         sum += digit / 10.0f64.powi(n as i32);
         n += 1.0;
 
