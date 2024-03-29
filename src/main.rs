@@ -7,13 +7,13 @@ fn main() {
     if (args.len() - 1) == 2 {
         let offset = u64::from_str(&args[2]).unwrap();
         println!("offset={}", offset);
-        calc_pi_with_offset(limit as u64,offset as u64);
+        calc_pi_with_offset(limit as u64, offset as u64);
         process::exit(0);
     }
 
     calc_pi(limit as u64);
 }
-fn calc_pi_with_offset(limit: u64,offset:u64) {
+fn calc_pi_with_offset(limit: u64, offset: u64) {
     //println!("limit={}", limit);
     let mut q = BigInt::from(1);
     let mut r = BigInt::from(0);
