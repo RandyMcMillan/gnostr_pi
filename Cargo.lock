@@ -27,7 +27,7 @@ dependencies = [
 
 [[package]]
 name = "gnostr_pi"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "num-bigint",
  "pico-args",

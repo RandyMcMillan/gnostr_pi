@@ -19,32 +19,29 @@ fn main() {
     //println!("Number of arguments: {}", args.len() - 1);
     if (args.len() - 1) >= 1 {
         if &args[1] == "-h" || &args[1] == "--help" {
-            println!("HELP");
             help();
             process::exit(0);
         }
     }
-
-
-    if (args.len() - 1) == 1 {
-        if &args[1] == "-h" || &args[1] == "--help" {
-            println!("HELP");
+    if (args.len() - 1) >= 1 {
+        if &args[1] == "-v" || &args[1] == "-V" || &args[1] == "--version" {
+            const VERSION: &str = env!("CARGO_PKG_VERSION");
+            println!("v{}", VERSION);
             process::exit(0);
         }
+    }
+    if (args.len() - 1) == 1 {
         let depth = u64::from_str(&args[1]).unwrap();
         println!("depth={}\n", depth);
         calc_pi(depth as u64);
         process::exit(0);
     }
 
-
     let limit = u64::from_str(&args[1]).unwrap();
     if limit <= 5 {
         println!("limit={}", limit);
         //TODO print usage
     }
-
-
 
     if (args.len() - 1) == 2 {
         let depth = u64::from_str(&args[1]).unwrap();
