@@ -1,33 +1,60 @@
 use num_bigint::BigInt;
 use std::{env, process, str::FromStr};
+
+fn help() {
+    println!("\ngnostr_pi\n");
+    println!("     .");
+    println!("     .");
+    println!("     .");
+    process::exit(0);
+}
 fn main() {
+    //
+    //
+    //
     let args: Vec<String> = env::args().collect();
+    //
+    //
+    //
     //println!("Number of arguments: {}", args.len() - 1);
-    let limit = u64::from_str(&args[1]).unwrap();
-    if limit <= 5 {
-        println!("limit={}", limit);
-        //TODO print usage
+    if (args.len() - 1) >= 1 {
+        if &args[1] == "-h" || &args[1] == "--help" {
+            println!("HELP");
+            process::exit(0);
+        }
     }
+
+
     if (args.len() - 1) == 1 {
-        if &args[1] == "-h" || &args[1] == "--help" {}
+        if &args[1] == "-h" || &args[1] == "--help" {
+            println!("HELP");
+            process::exit(0);
+        }
         let depth = u64::from_str(&args[1]).unwrap();
         println!("depth={}\n", depth);
         calc_pi(depth as u64);
         process::exit(0);
     }
+
+
+    let limit = u64::from_str(&args[1]).unwrap();
+    if limit <= 5 {
+        println!("limit={}", limit);
+        //TODO print usage
+    }
+
+
+
     if (args.len() - 1) == 2 {
         let depth = u64::from_str(&args[1]).unwrap();
         println!("depth={}\n", depth);
         let offset = u64::from_str(&args[2]).unwrap();
         println!("offset={}\n", offset);
 
-
-        if offset <= 0 {}else{
-
-        calc_pi_with_offset(depth as u64, offset as u64);
-
+        if offset <= 0 {
+        } else {
+            calc_pi_with_offset(depth as u64, offset as u64);
         }
-
 
         process::exit(0);
     }
