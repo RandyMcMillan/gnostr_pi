@@ -20,6 +20,7 @@ fn main() {
     if (args.len() - 1) >= 1 {
         if &args[1] == "-h" || &args[1] == "--help" {
             println!("HELP");
+            help();
             process::exit(0);
         }
     }
